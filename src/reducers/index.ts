@@ -1,6 +1,4 @@
 import { combineReducers, Reducer } from 'redux';
-import { connectRouter } from 'connected-react-router';
-import { History, LocationState } from 'history';
 export const Update = 'Update';
 
 const initstate = {};
@@ -15,7 +13,6 @@ const app = (state = initstate, action) => {
   }
 };
 
-const createRootReducer: (history: History) => Reducer = (history: History<LocationState>) =>
-  combineReducers({ router: connectRouter(history), app });
+const createRootReducer: () => Reducer = () => combineReducers({ app });
 
 export default createRootReducer;
