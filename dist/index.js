@@ -3,27 +3,14 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 var redux = require('redux');
+var _extends = require('@babel/runtime/helpers/esm/extends');
 var connectedReactRouter = require('connected-react-router');
 var react = require('react');
 var reactRedux = require('react-redux');
 
-function _extends() {
-  _extends = Object.assign || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-
-    return target;
-  };
-
-  return _extends.apply(this, arguments);
-}
+var _extends__default = /*#__PURE__*/_interopDefaultLegacy(_extends);
 
 function isAbsolute(pathname) {
   return pathname.charAt(0) === '/';
@@ -188,7 +175,7 @@ function createLocation(path, state, key, currentLocation) {
     location.state = state;
   } else {
     // One-arg form: push(location)
-    location = _extends({}, path);
+    location = _extends__default['default']({}, path);
     if (location.pathname === undefined) location.pathname = '';
 
     if (location.search) {
@@ -405,7 +392,7 @@ function createBrowserHistory(props) {
   var transitionManager = createTransitionManager();
 
   function setState(nextState) {
-    _extends(history, nextState);
+    _extends__default['default'](history, nextState);
 
     history.length = globalHistory.length;
     transitionManager.notifyListeners(history.location, history.action);
@@ -678,7 +665,7 @@ function createHashHistory(props) {
   var transitionManager = createTransitionManager();
 
   function setState(nextState) {
-    _extends(history, nextState);
+    _extends__default['default'](history, nextState);
 
     history.length = globalHistory.length;
     transitionManager.notifyListeners(history.location, history.action);
@@ -920,7 +907,7 @@ function createMemoryHistory(props) {
   var transitionManager = createTransitionManager();
 
   function setState(nextState) {
-    _extends(history, nextState);
+    _extends__default['default'](history, nextState);
 
     history.length = history.entries.length;
     transitionManager.notifyListeners(history.location, history.action);
