@@ -1,6 +1,6 @@
 {
   "name": "simple-redux-store",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "基于react hooks/redux的简单存储方案",
   "keywords": [
     "react",
@@ -71,7 +71,7 @@
     "dist"
   ],
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,json,css,scss,md,less}": [
+    "*.{js,jsx,ts,tsx,json,css,scss,less}": [
       "eslint --cache --fix",
       "prettier --write"
     ]

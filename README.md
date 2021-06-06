@@ -17,14 +17,11 @@
 import React, { Suspense } from 'react';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
-import { Route, Switch } from 'react-router-dom';
-import { ConnectedRouter, Provider, configureStore, history } from 'simple-redux-store';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import { Provider, configureStore } from 'simple-redux-store';
 import routes from './RouteConfig';
 import { Spin } from 'antd';
-import 'dayjs/locale/zh-cn';
-import dayjs from 'dayjs';
-
-dayjs.locale('zh-cn');
+import './App.less';
 
 const Routes = () => {
   // 初始状态[可有可无]
@@ -36,7 +33,7 @@ const Routes = () => {
   return (
     <Provider store={store}>
       <ConfigProvider locale={zhCN}>
-        <ConnectedRouter history={history}>
+        <BrowserRouter>
           <Suspense fallback={<Spin />}>
             <Switch>
               {routes.map((route, idx) => (
@@ -50,13 +47,14 @@ const Routes = () => {
               <Route render={() => <div>page not found</div>} />
             </Switch>
           </Suspense>
-        </ConnectedRouter>
+        </BrowserRouter>
       </ConfigProvider>
     </Provider>
   );
 };
 
 export default Routes;
+
 
 ```
 ##### 2 .读取/更新store 
