@@ -102,16 +102,20 @@ function useUpdateStore() {
 }
 
 var composeEnhancers = redux.compose;
-var win = window || {};
 
-if ('__REDUX_DEVTOOLS_EXTENSION_COMPOSE__' in win) {
-  composeEnhancers = win.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-    trace: true
-  });
+if (typeof window !== 'undefined') {
+  if ('__REDUX_DEVTOOLS_EXTENSION_COMPOSE__' in window) {
+    composeEnhancers = window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__']({
+      trace: true
+    });
+  }
 }
 
-var configureStore = function configureStore(preloadedState) {
-  var store = redux.createStore(createRootReducer(), preloadedState, composeEnhancers(redux.applyMiddleware()));
+var configureStore = function configureStore() {
+  var initState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var store = redux.createStore(createRootReducer(), {
+    app: initState
+  }, composeEnhancers(redux.applyMiddleware()));
   return store;
 };
 

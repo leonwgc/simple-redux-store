@@ -13,6 +13,6 @@ const app = (state = initstate, action) => {
   }
 };
 
-const createRootReducer: () => Reducer = () => combineReducers({ app });
+const createRootReducer = (): Reducer => combineReducers({ app });
 
 export default createRootReducer;

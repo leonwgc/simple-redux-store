@@ -99,16 +99,20 @@ function useUpdateStore() {
 }
 
 var composeEnhancers = compose;
-var win = window || {};
 
-if ('__REDUX_DEVTOOLS_EXTENSION_COMPOSE__' in win) {
-  composeEnhancers = win.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-    trace: true
-  });
+if (typeof window !== 'undefined') {
+  if ('__REDUX_DEVTOOLS_EXTENSION_COMPOSE__' in window) {
+    composeEnhancers = window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__']({
+      trace: true
+    });
+  }
 }
 
-var configureStore = function configureStore(preloadedState) {
-  var store = createStore(createRootReducer(), preloadedState, composeEnhancers(applyMiddleware()));
+var configureStore = function configureStore() {
+  var initState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var store = createStore(createRootReducer(), {
+    app: initState
+  }, composeEnhancers(applyMiddleware()));
   return store;
 };
 

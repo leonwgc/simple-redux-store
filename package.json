@@ -1,6 +1,6 @@
 {
   "name": "simple-redux-store",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "基于react hooks/redux的简单存储方案",
   "keywords": [
     "react",

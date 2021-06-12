@@ -25,8 +25,7 @@ import './App.less';
 
 const Routes = () => {
   // 初始状态[可有可无]
-  const initState = { app: { name: '杨过', age: 18 } };
-
+  const initState = { name: '杨过', age: 18 };
   // 根据初始状态建立store
   const store = configureStore(initState);
 
