@@ -99,9 +99,10 @@ function useUpdateStore() {
 }
 
 var composeEnhancers = compose;
+var win = window || {};
 
-if ('__REDUX_DEVTOOLS_EXTENSION_COMPOSE__' in window) {
-  composeEnhancers = window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__']({
+if ('__REDUX_DEVTOOLS_EXTENSION_COMPOSE__' in win) {
+  composeEnhancers = win.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
     trace: true
   });
 }

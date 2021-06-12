@@ -5,8 +5,14 @@ export { useSelector, Provider } from 'react-redux';
 
 let composeEnhancers = compose;
 
-if ('__REDUX_DEVTOOLS_EXTENSION_COMPOSE__' in window) {
-  composeEnhancers = window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__']({ trace: true });
+type Window = {
+  __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: ({ trace: boolean }) => void;
+};
+
+const win: Window | Record<string, any> = window || {};
+
+if ('__REDUX_DEVTOOLS_EXTENSION_COMPOSE__' in win) {
+  composeEnhancers = win.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({ trace: true });
 }
 
 export const configureStore: (preloadedState: Record<string, unknown>) => Store = (

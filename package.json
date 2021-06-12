@@ -1,6 +1,6 @@
 {
   "name": "simple-redux-store",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "基于react hooks/redux的简单存储方案",
   "keywords": [
     "react",
@@ -19,6 +19,7 @@
     "prepare": "husky install",
     "lint-staged": "lint-staged",
     "build": "father-build --cjs --esm && tsc",
+    "dev": "father-build --esm -w",
     "demo": "packx run",
     "pub": "bash pub.sh"
   },
