@@ -98,18 +98,19 @@ function useUpdateStore() {
   }, [dispatch]);
 }
 
-var composeEnhancers = compose;
-
-if (typeof window !== 'undefined') {
-  if ('__REDUX_DEVTOOLS_EXTENSION_COMPOSE__' in window) {
-    composeEnhancers = window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__']({
-      trace: true
-    });
-  }
-}
-
 var configureStore = function configureStore() {
   var initState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var trace = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  var composeEnhancers = compose;
+
+  if (trace && typeof window !== 'undefined') {
+    if ('__REDUX_DEVTOOLS_EXTENSION_COMPOSE__' in window) {
+      composeEnhancers = window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__']({
+        trace: true
+      });
+    }
+  }
+
   var store = createStore(createRootReducer(), {
     app: initState
   }, composeEnhancers(applyMiddleware()));
