@@ -4,7 +4,7 @@ export { default as useUpdateStore } from './hooks/useUpdateStore';
 export { useSelector, Provider } from 'react-redux';
 
 export const configureStore = (
-  initState: Record<string, unknown> | undefined = {},
+  initState: Record<string, unknown> | null = {},
   trace = false
 ): Store => {
   let composeEnhancers = compose;
