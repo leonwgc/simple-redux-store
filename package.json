@@ -1,11 +1,13 @@
 {
   "name": "simple-redux-store",
   "version": "1.0.2",
-  "description": "基于react hooks/redux的简单存储方案",
+  "description": "基于react hooks & redux状态管理库",
   "keywords": [
     "react",
     "redux",
-    "store"
+    "store",
+    "state management",
+    "hooks"
   ],
   "license": "MIT",
   "repository": "https://github.com/leonwgc/simple-redux-store",
@@ -19,8 +21,7 @@
     "prepare": "husky install",
     "lint-staged": "lint-staged",
     "build": "father-build --cjs --esm && tsc",
-    "dev": "father-build --esm -w",
-    "pub": "bash pub.sh"
+    "dev": "father-build --esm -w"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
@@ -54,10 +55,14 @@
     "father-build": "^1.19.5",
     "husky": "^6.0.0",
     "lint-staged": "^10.5.4",
+    "packw": "^1.0.1",
     "prettier": "^2.2.1",
+    "react-uni-comps": "^1.5.9",
     "rimraf": "^3.0.2",
     "typescript": "^4.2.4",
-    "yargs": "^15.3.1"
+    "yargs": "^15.3.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "files": [
     "dist",
