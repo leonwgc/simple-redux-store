@@ -1,17 +1,17 @@
 import React from 'react';
-import { Button, nanoid, Avatar, Space } from 'react-uni-comps';
-import { useStoreData, useUpdateStore } from '../src';
+import { Button, nanoid, Space } from 'react-uni-comps';
+import { useUpdateStore, useAppData } from '../src';
 
 export default function Name() {
   const updateStore = useUpdateStore();
-  const { name1 = 'name1' } = useStoreData();
+  const { name = 'wgc' } = useAppData('name');
 
   return (
-    <Space>
-      <Button outlined block onClick={() => updateStore({ name1: 'name1--' + nanoid() })}>
-        {name1}
+    <div>
+      <div>useAppData will only re-render when name change</div>
+      <Button outlined block onClick={() => updateStore({ name: 'name--' + nanoid() })}>
+        {name}
       </Button>
-      <Avatar />
-    </Space>
+    </div>
   );
 }

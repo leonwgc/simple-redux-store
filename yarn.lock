@@ -9305,10 +9305,10 @@ react-transition-group@^4.4.2:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-react-uni-comps@^1.5.9:
-  version "1.5.9"
-  resolved "https://registry.yarnpkg.com/react-uni-comps/-/react-uni-comps-1.5.9.tgz#d8806423512ceca9938491037eadebb9d0775151"
-  integrity sha512-Fm0Z2HKoEcfV5vfbGzRVXmU9UM4BWu59UAuNmLYcYoQ9XmNJc2hd8WJ8H2ntfeNtwN3jD+tqp3Omco5fjVsvVA==
+react-uni-comps@1.5.10:
+  version "1.5.10"
+  resolved "https://registry.yarnpkg.com/react-uni-comps/-/react-uni-comps-1.5.10.tgz#d3cff3122a2e8ad19ab6684a34f05786601d9213"
+  integrity sha512-fnCv37l6sxakBM3W3PTDDj7S1Y6PU3qXN5FQO7mfnbBOl3G3J1zQbLeQG4i2kklxVHp6xYQf4L34LWsJMBkJIA==
   dependencies:
     "@react-spring/web" "^9.4.2"
     clsx "^1.1.1"

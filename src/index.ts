@@ -1,4 +1,5 @@
-import { useSelector } from 'react-redux';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useSelector, shallowEqual } from 'react-redux';
 import { applyMiddleware, compose, createStore, Store } from 'redux';
 import createRootReducer from './reducers';
 export { default as useUpdateStore } from './hooks/useUpdateStore';
@@ -34,12 +35,53 @@ type RootState = {
 };
 
 /**
- * 取redux状态数据
+ * 取app状态
  *
- * @return {*}  {Record<string, unknown>}
+ * @param {string | string[]} [fileds] 获取的属性，防止rerender, 不传则返回整个app对象
+ * @return {*}  Record<string, any> 包含fileds的对象，如果没有fileds,则返回app对象
  */
-export const useStoreData = (): Record<string, unknown> => {
-  return useSelector((state: RootState) => state.app);
+export const useAppData = (fileds?: string | string[]): Record<string, any> => {
+  return useSelector(
+    (state: RootState) => {
+      // top-level app state
+      const app = state.app || {};
+
+      if (!fileds) {
+        return app;
+      }
+
+      if (typeof fileds === 'string') {
+        return { [fileds]: app[fileds] };
+      }
+
+      if (Array.isArray(fileds) && fileds.length > 0) {
+        const result = {};
+        fileds.map((f) => (result[f] = app[f]));
+        return result;
+      }
+
+      return app;
+    },
+    (left, right) => {
+      if (!fileds) {
+        return left === right;
+      }
+
+      if (typeof fileds === 'string') {
+        return shallowEqual(left[fileds], right[fileds]);
+      }
+
+      if (Array.isArray(fileds) && fileds.length > 0) {
+        for (const f of fileds) {
+          if (!shallowEqual(left[f], right[f])) {
+            return false;
+          }
+        }
+      }
+
+      return true;
+    }
+  );
 };
 
 export default configureStore;

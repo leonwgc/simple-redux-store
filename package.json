@@ -57,7 +57,7 @@
     "lint-staged": "^10.5.4",
     "packw": "^1.0.1",
     "prettier": "^2.2.1",
-    "react-uni-comps": "^1.5.9",
+    "react-uni-comps": "1.5.10",
     "rimraf": "^3.0.2",
     "typescript": "^4.2.4",
     "yargs": "^15.3.1",
