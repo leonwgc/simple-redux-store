@@ -35,10 +35,10 @@ type RootState = {
 };
 
 /**
- * 取app状态
+ * 读取app状态
  *
- * @param {string | string[]} [fileds] 获取的属性，防止rerender, 不传则返回整个app对象
- * @return {*}  Record<string, any> 包含fileds的对象，如果没有fileds,则返回app对象
+ * @param {(string | string[])} [fileds] 读取的属性, 不传则返回整个app对象,推荐只传组件需要的属性，防止重复渲染
+ * @return {*} app对象 / 只包含fields的app对象
  */
 export const useAppData = (fileds?: string | string[]): Record<string, any> => {
   return useSelector(

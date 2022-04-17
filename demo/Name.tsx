@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, nanoid, Space } from 'react-uni-comps';
+import { Button, nanoid } from 'react-uni-comps';
 import { useUpdateStore, useAppData } from '../src';
 
 export default function Name() {

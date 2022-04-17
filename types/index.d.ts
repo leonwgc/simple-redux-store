@@ -13,9 +13,10 @@ export declare const configureStore: (
   trace?: boolean
 ) => Store;
 /**
- * 取redux状态数据
+ * 读取app状态
  *
- * @return {*}  {Record<string, unknown>}
+ * @param {(string | string[])} [fileds] 读取的属性, 不传则返回整个app对象,推荐只传组件需要的属性，防止重复渲染
+ * @return {*} app对象 / 只包含fields的app对象
  */
-export declare const useStoreData: () => Record<string, unknown>;
+export declare const useAppData: (fileds?: string | string[]) => Record<string, any>;
 export default configureStore;
