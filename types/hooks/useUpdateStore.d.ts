@@ -1,5 +1,5 @@
 /**
- * 获得更新状态函数
+ * get function to update store
  *
  * @export
  * @return {*}  {(payload: Record<string, unknown>) => void}

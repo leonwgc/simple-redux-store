@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useSelector, shallowEqual } from 'react-redux';
 import { applyMiddleware, compose, createStore, Store } from 'redux';
 import createRootReducer from './reducers';
@@ -6,10 +5,10 @@ export { default as useUpdateStore } from './hooks/useUpdateStore';
 export { useSelector, Provider } from 'react-redux';
 
 /**
- * 创建全局状态
+ * create store
  *
- * @param {(Record<string, unknown>)} [initState={}] 初始状态
- * @param {boolean} [trace=false] redux-devtool追踪
+ * @param {(Record<string, unknown>)} [initState={}] initial state
+ * @param {boolean} [trace=false] enable redux-devtool trace
  * @return {*}  {Store}
  */
 export const configureStore = (initState: Record<string, unknown> = {}, trace = false): Store => {
@@ -35,44 +34,45 @@ type RootState = {
 };
 
 /**
- * 读取app状态
+ * get app state
  *
- * @param {(string | string[])} [fileds] 读取的属性, 不传则返回整个app对象,推荐只传组件需要的属性，防止重复渲染
- * @return {*} app对象 / 只包含fields的app对象
+ *
+ * @param {(string | string[])} [props] prop| props to get in app state, if not set, all props in app will return.
+ * @return {*} object
  */
-export const useAppData = (fileds?: string | string[]): Record<string, any> => {
+export const useAppData = (props?: string | string[]): Record<string, any> => {
   return useSelector(
     (state: RootState) => {
       // top-level app state
       const app = state.app || {};
 
-      if (!fileds) {
+      if (!props) {
         return app;
       }
 
-      if (typeof fileds === 'string') {
-        return { [fileds]: app[fileds] };
+      if (typeof props === 'string') {
+        return { [props]: app[props] };
       }
 
-      if (Array.isArray(fileds) && fileds.length > 0) {
+      if (Array.isArray(props) && props.length > 0) {
         const result = {};
-        fileds.map((f) => (result[f] = app[f]));
+        props.map((f) => (result[f] = app[f]));
         return result;
       }
 
       return app;
     },
     (left, right) => {
-      if (!fileds) {
+      if (!props) {
         return left === right;
       }
 
-      if (typeof fileds === 'string') {
-        return shallowEqual(left[fileds], right[fileds]);
+      if (typeof props === 'string') {
+        return shallowEqual(left[props], right[props]);
       }
 
-      if (Array.isArray(fileds) && fileds.length > 0) {
-        for (const f of fileds) {
+      if (Array.isArray(props) && props.length > 0) {
+        for (const f of props) {
           if (!shallowEqual(left[f], right[f])) {
             return false;
           }
