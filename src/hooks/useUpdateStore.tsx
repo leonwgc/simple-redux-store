@@ -4,9 +4,8 @@ import { useDispatch } from 'react-redux';
 import { update } from '../actions';
 
 /**
- * get function to update store
+ * Get update store function
  *
- * @export
  * @return {*}  {(payload: Record<string, unknown>) => void}
  */
 export default function useUpdateStore(): (payload: Record<string, unknown>) => void {

@@ -1,7 +1,7 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import type { Dispatch } from 'redux';
 import { Update } from '../reducers';
 
 export const update =
-  (dispatch) =>
-  (data: Record<string, unknown> = {}): void =>
-    dispatch({ type: Update, payload: data });
+  (dispatch: Dispatch) =>
+  (payload: Record<string, any> = {}): any =>
+    dispatch({ type: Update, payload });

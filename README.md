@@ -1,6 +1,6 @@
-## simple-redux-store
 
-简单易用的react-redux状态管理 (easy to use react-redux state management lib)
+
+# 简单好用的 redux 状态管理
 
 ### 安装 (Installation)
 
@@ -9,15 +9,14 @@
     $ npm install --save simple-redux-store
     $ yarn add simple-redux-store
 
-### 特点 (Features)
+### 特点
 
-1. 简单, 一共 4 个 api (easy to use and there're only four APIs)
-2. 支持 web / node / taro / 微信小程序等环境 (supports web / node / taro / wechat mini program / and other envs which redux supports)
+1. 简单, 一共4个api，configureStore用于创建全局状态，Provider组件将store提供给子孙组件，useAppData用于获取store状态，useUpdateStore 用户获取更新store的函数
+2. 支持 web/node/taro/微信小程序等环境
 
 ### Usage
 
-1. 创建 store, 通过 Provider 提供全局 store (Create store and pass it to Provider as globle state)
-
+1. 创建 store, 通过Provider提供全局store
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -25,11 +24,11 @@ import { Provider, configureStore } from 'simple-redux-store';
 import App from './App';
 
 /**
- * create store
- * @param initialState, initial states
- * @param tracing, enable/disable redux-devtool trace
+ * Create store
+ * @param initialState, Initial states
+ * @param tracing, Enable/disable redux-devtool trace
  */
-const store = configureStore({ name: 'leonwgc'}, true);
+const store = configureStore({ name: 'leonwgc' }, true);
 
 ReactDOM.render(
   <Provider store={store}>
@@ -39,32 +38,26 @@ ReactDOM.render(
 );
 ```
 
-2.读取状态 (Get gloabal state via useAppData hooks)
+2.读取状态
 
 ```js
 import React from 'react';
 import { useAppData } from 'simple-redux-store';
 
 export default function App() {
-  /**
-   * Get global state via useAppData
-   */
   const app = useAppData();
 
   return <div>hello {app.name}</div>;
 }
 ```
 
-3.更新状态 (Set/Update gloabal state via useUpdateStore hooks)
+3.更新状态
 
 ```js
 import React from 'react';
 import { useUpdateStore, useAppData } from 'simple-redux-store';
 
 export default function App() {
-  /**
-   * Set global state via useUpdateStore
-   */
   const updateStore = useUpdateStore();
 
   const { name = 'leonwgc' } = useAppData('name');

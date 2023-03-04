@@ -2,20 +2,20 @@ import { useSelector, shallowEqual } from 'react-redux';
 import { applyMiddleware, compose, createStore, Store } from 'redux';
 import createRootReducer from './reducers';
 export { default as useUpdateStore } from './hooks/useUpdateStore';
-export { useSelector, Provider } from 'react-redux';
+export { Provider } from 'react-redux';
 
 /**
- * create store
+ * Create store
  *
- * @param {(Record<string, unknown>)} [initState={}] initial state
- * @param {boolean} [trace=false] enable redux-devtool trace
+ * @param {(Record<string, unknown>)} [initState={}] Initial state
+ * @param {boolean} [trace=false] Whether enable redux-devtool trace
  * @return {*}  {Store}
  */
 export const configureStore = (initState: Record<string, unknown> = {}, trace = false): Store => {
   let composeEnhancers = compose;
 
   if (trace && typeof window !== 'undefined') {
-    if ('__REDUX_DEVTOOLS_EXTENSION_COMPOSE__' in window) {
+    if (typeof window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] === 'function') {
       composeEnhancers = window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__']({ trace: true });
     }
   }
@@ -34,16 +34,15 @@ type RootState = {
 };
 
 /**
- * get app state
+ * Get app state
  *
  *
- * @param {(string | string[])} [props] prop| props to get in app state, if not set, all props in app will return.
+ * @param {(string | string[])} [props] Prop| Props to get in app state, if undefined, all props in app will return.
  * @return {*} object
  */
 export const useAppData = (props?: string | string[]): Record<string, any> => {
   return useSelector(
     (state: RootState) => {
-      // top-level app state
       const app = state.app || {};
 
       if (!props) {
@@ -83,5 +82,3 @@ export const useAppData = (props?: string | string[]): Record<string, any> => {
     }
   );
 };
-
-export default configureStore;
