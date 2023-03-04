@@ -8,8 +8,8 @@ export default function Age() {
 
   return (
     <Space direction="vertical" style={{ border: '1px solid #ccc', padding: 24 }}>
-      <div>useAppData will only re-render when age change</div>
-      <InputNumber value={age} onChange={(v) => updateStore({ age: v })} />
+      <div>useAppData('age') will only re-render when age change</div>
+      <InputNumber placeholder="age" value={age} onChange={(v) => updateStore({ age: v })} />
     </Space>
   );
 }

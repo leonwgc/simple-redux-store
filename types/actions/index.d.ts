@@ -1,1 +1,2 @@
-export declare const update: (dispatch: any) => (data?: Record<string, unknown>) => void;
+import type { Dispatch } from 'redux';
+export declare const update: (dispatch: Dispatch) => (payload?: Record<string, any>) => any;

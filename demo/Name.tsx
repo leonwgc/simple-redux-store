@@ -10,7 +10,7 @@ export default function Name() {
     <div>
       <div>useAppData will only re-render when name change</div>
       <Button outlined block onClick={() => updateStore({ name: 'name--' + nanoid() })}>
-        {name}
+        update {name}
       </Button>
     </div>
   );

@@ -1,11 +1,11 @@
 import { Store } from 'redux';
 export { default as useUpdateStore } from './hooks/useUpdateStore';
-export { useSelector, Provider } from 'react-redux';
+export { Provider } from 'react-redux';
 /**
- * create store
+ * Create store
  *
- * @param {(Record<string, unknown>)} [initState={}] initial state
- * @param {boolean} [trace=false] enable redux-devtool trace
+ * @param {(Record<string, unknown>)} [initState={}] Initial state
+ * @param {boolean} [trace=false] Whether enable redux-devtool trace
  * @return {*}  {Store}
  */
 export declare const configureStore: (
@@ -13,11 +13,10 @@ export declare const configureStore: (
   trace?: boolean
 ) => Store;
 /**
- * get app state
+ * Get app state
  *
  *
- * @param {(string | string[])} [props] prop| props to get in app state, if not set, all props in app will return.
+ * @param {(string | string[])} [props] Prop| Props to get in app state, if undefined, all props in app will return.
  * @return {*} object
  */
 export declare const useAppData: (props?: string | string[]) => Record<string, any>;
-export default configureStore;
