@@ -1,6 +1,6 @@
 import { useSelector, shallowEqual } from 'react-redux';
 import { applyMiddleware, compose, createStore, Store } from 'redux';
-import createRootReducer from './reducers';
+import createRootReducer, { rootAppName } from './reducers';
 export { default as useUpdateStore } from './hooks/useUpdateStore';
 export { Provider } from 'react-redux';
 
@@ -33,7 +33,7 @@ export const configureStore = (initState: Record<string, unknown> = {}, trace = 
  *  Root state. all global state stored as props of state.app as convension.
  */
 export type RootState = {
-  app: Record<string, unknown>;
+  [rootAppName]: Record<string, unknown>;
 };
 
 /**
@@ -72,7 +72,7 @@ export const useAppData = (
   equalityFn?: EqualityFn
 ): Record<string, any> => {
   return useSelector((state: RootState) => {
-    const app = state.app || {};
+    const app = state[rootAppName] || {};
 
     if (!props) {
       return app;

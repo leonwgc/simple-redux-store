@@ -13,6 +13,8 @@ const app = (state = initstate, action) => {
   }
 };
 
-const createRootReducer = (): Reducer => combineReducers({ app });
+export const rootAppName = '__APP__';
+
+const createRootReducer = (): Reducer => combineReducers({ [rootAppName]: app });
 
 export default createRootReducer;
