@@ -1,29 +1,33 @@
-import React from 'react';
-import { Space, Button } from 'react-uni-comps';
-import Name from './Name';
-import Age from './Age';
-import Age1 from './Age1';
-import NameAge from './NameAge';
-import { useUpdateStore } from '../src';
+import React, { useRef } from 'react';
+import { Button } from 'react-uni-comps';
+import { useUpdateStore, useAppData } from '../src';
+
+import './App.scss';
+import Accordion from 'alcedo-ui/Accordion';
 
 export default function App() {
   const updateStore = useUpdateStore();
+  const { list = [1, 2, 3] } = useAppData();
+
+  const ref = useRef();
 
   return (
-    <Space direction="vertical" size={24}>
-      <Name />
-
-      <Age />
-
-      <Button>hello</Button>
-
-      <Age1 />
-
-      <Button onClick={() => updateStore({ age: '20' })}>set age to 20</Button>
-
-      <NameAge />
-
-      <Button onClick={() => updateStore({ name: 'wgc' })}>set name to wgc</Button>
-    </Space>
+    <div>
+      <Accordion title="Title" className="accordion-examples" ref={ref}>
+        <div className="accordion-examples-content">
+          {list.map((item) => (
+            <div>list{item}</div>
+          ))}
+        </div>
+      </Accordion>
+      <Button
+        onClick={() => {
+          updateStore({ list: [1, 2, 3, 4, 5, 6] });
+          ref.current.resetHeight();
+        }}
+      >
+        add more
+      </Button>
+    </div>
   );
 }
